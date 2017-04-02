@@ -1,21 +1,31 @@
 package friendsofmine.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * Created by Hades on 4/1/17.
  */
+@Entity
 public class Activite {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @NotNull
     @Size(min =1, max = 256)
     private String titre;
 
-    private String description;
+    private String descriptif;
 
     public Activite(String t, String d){
         this.titre = t;
-        this.description = d;
+        this.descriptif = d;
     }
 
     public String getTitre() {
@@ -26,11 +36,19 @@ public class Activite {
         this.titre = titre;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptif() {
+        return descriptif;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptif(String descriptif) {
+        this.descriptif = descriptif;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
