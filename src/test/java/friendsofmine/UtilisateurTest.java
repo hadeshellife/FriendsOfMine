@@ -1,5 +1,6 @@
-package friendsofmine.domain;
+package friendsofmine;
 
+import friendsofmine.domain.Utilisateur;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;

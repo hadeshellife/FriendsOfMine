@@ -1,7 +1,8 @@
-package friendsofmine.service;
+package friendsofmine;
 
 import friendsofmine.domain.Activite;
 import friendsofmine.domain.Utilisateur;
+import friendsofmine.service.ActiviteService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

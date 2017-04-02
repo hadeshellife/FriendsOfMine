@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
-<head lang="en">
+<head>
     <title>Friends of Mine</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
 <h2>Liste des Utilisateurs</h2>
-<table class="table table-striped">
+<table class="w3-table-all w3-hoverable">
     <tr>
+        <th>Id</th>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Email</th>
         <th>Date de naissance</th>
         <th>Sexe</th>
     </tr>
-    <tr th:each="utilisateurs : ${utilisateurs}">
-        <td th:text="${utilisateurs.nom}"></td>
-        <td th:text="${utilisateurs.prenom}"></td>
-        <td th:text="${utilisateurs.email}"></td>
-        <td th:text="${utilisateurs.dateNaissance}"></td>
-        <td th:text="${utilisateurs.sexe}"></td>
+    <tr th:each="participant : ${utilisateurs}">
+        <td th:text="${participant.id}"></td>
+        <td th:text="${participant.nom}"></td>
+        <td th:text="${participant.prenom}"></td>
+        <td th:text="${participant.email}"></td>
+        <td th:text="${participant.dateNaissance}"></td>
+        <td th:text="${participant.sexe}"></td>
+        <td><form th:method="get" th:action="${ '/participant/' + participant.id}">
+            <button class="w3-button w3-black" type="submit">Voir</button>
+        </form></td>
+        <td><form th:method="get" th:action="${'/participant/edit/' + participant.id}">
+            <button class="w3-button w3-black" type="submit">Editer</button>
+        </form></td>
+        <td><form th:method="delete" th:action="${'/participant/delete/' + participant.id}">
+            <button class="w3-button w3-black" type="submit">Suppression</button>
+        </form></td>
     </tr>
 </table>
-
-<body>
 
 </body>
 </html>

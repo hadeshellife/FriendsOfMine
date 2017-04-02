@@ -43,4 +43,8 @@ public class UtilisateurService{
     public void setUtilisateurRepository(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
     }
+
+    public void deleteUtilisateur(Long id){
+        this.utilisateurRepository.delete(id);
+    }
 }

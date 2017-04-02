@@ -1,6 +1,7 @@
-package friendsofmine.controllers;
+package friendsofmine;
 
 import friendsofmine.Bootstrap;
+import friendsofmine.controllers.ActiviteController;
 import friendsofmine.service.InitialisationService;
 import org.hamcrest.Matchers;
 import org.junit.Test;

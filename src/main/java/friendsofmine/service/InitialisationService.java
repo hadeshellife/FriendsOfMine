@@ -1,16 +1,27 @@
 package friendsofmine.service;
 
 import friendsofmine.domain.Activite;
+import friendsofmine.domain.Inscription;
 import friendsofmine.domain.Utilisateur;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class InitialisationService {
 
-    private ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
-    private ArrayList<Activite> activites = new ArrayList<>();
+    @Autowired
+    private ActiviteService activiteService;
+
+    @Autowired
+    private InscriptionService inscriptionService;
+
+    private Utilisateur thom, mary;
+    private Activite randonnee, lindyhop, taekwondo;
+    private Inscription maryOnTaekwondo;
+    private Inscription thomOnRandonnee;
+    private Inscription thomOnLindyhop;
 
     public void initDonnees() {
         initMary();
@@ -20,39 +31,86 @@ public class InitialisationService {
         initTaekwondo();
     }
 
+    public void initInscriptions() {
+        initThomOnLindyhop();
+        initThomOnRandonnee();
+        initMaryOnTaekwondo();
+    }
+
+    private void initMaryOnTaekwondo() {
+        maryOnTaekwondo = new Inscription();
+        maryOnTaekwondo.setParticipant(mary);
+        maryOnTaekwondo.setActivite(taekwondo);
+        inscriptionService.saveInscription(maryOnTaekwondo);
+    }
+
+    private void initThomOnRandonnee() {
+        thomOnRandonnee = new Inscription();
+        thomOnRandonnee.setParticipant(thom);
+        thomOnRandonnee.setActivite(randonnee);
+        inscriptionService.saveInscription(thomOnRandonnee);
+    }
+
+    private void initThomOnLindyhop() {
+        thomOnLindyhop = new Inscription();
+        thomOnLindyhop.setParticipant(thom);
+        thomOnLindyhop.setActivite(lindyhop);
+        inscriptionService.saveInscription(thomOnLindyhop);
+    }
+
     private void initThom() {
-        utilisateurs.add(new Utilisateur("Thom", "Thom", "thom@thom.com", "M"));
+        thom = new Utilisateur("Yorke", "Thom", "thom@thom.com", "M", new Date());
     }
 
     private void initMary() {
-        utilisateurs.add(new Utilisateur("Mary", "Mary", "mary@mary.com", "F"));
+        mary = new Utilisateur("Greenwood", "Mary", "mary@mary.com", "F");
     }
 
     private void initTaekwondo() {
-        activites.add(new Activite("Taekwondo", "le dimanche soir"));
+        taekwondo = new Activite("Taekwondo", "Cours le dimanche soir", thom);
+        activiteService.saveActivite(taekwondo);
+
     }
 
     private void initLindyHop() {
-        activites.add(new Activite("Lindy Hop", "le jeudi soir"));
+        lindyhop = new Activite("Lindy Hop", "Cours le jeudi soir", thom);
+        activiteService.saveActivite(lindyhop);
     }
 
     private void initRandonnee() {
-        activites.add(new Activite("Randonnee", "le lundi matin"));
+        randonnee = new Activite("Randonnee", "Activité libre le lundi matin", mary);
+        activiteService.saveActivite(randonnee);
     }
 
-    public ArrayList<Utilisateur> getUtilisateurs() {
-        return utilisateurs;
+    public Utilisateur getThom() {
+        return thom;
     }
 
-    public ArrayList<Activite> getActivites() {
-        return activites;
+    public Utilisateur getMary() {
+        return mary;
     }
 
-    public void setUtilisateurs(ArrayList<Utilisateur> utilisateurs) {
-        this.utilisateurs = utilisateurs;
+    public Activite getRandonnee() {
+        return randonnee;
     }
 
-    public void setActivites(ArrayList<Activite> activites) {
-        this.activites = activites;
+    public Activite getLindyhop() {
+        return lindyhop;
+    }
+
+    public Activite getTaekwondo() {
+        return taekwondo;
+    }
+
+    public Inscription getMaryOnTaekwondo() {
+        return maryOnTaekwondo;
+    }
+
+    public Inscription getThomOnRandonnee() {
+        return thomOnRandonnee;
+    }
+
+    public Inscription getThomOnLindyhop() {
+        return thomOnLindyhop;
     }
 }

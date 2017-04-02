@@ -1,5 +1,7 @@
 package friendsofmine.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +24,7 @@ public class Activite {
 
     @NotNull
     @ManyToOne
+    @JsonIgnore
     private Utilisateur responsable;
 
     public Activite(){}
@@ -59,5 +62,13 @@ public class Activite {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Utilisateur getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(Utilisateur responsable) {
+        this.responsable = responsable;
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -37,7 +38,7 @@ public class Utilisateur {
     private String sexe;
 
     @OneToMany(mappedBy = "responsable")
-    private ArrayList<Activite> activite;
+    private Collection<Activite> activite;
 
     public Utilisateur(){}
 
@@ -106,11 +107,16 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public ArrayList<Activite> getActivites() {
+    public Collection<Activite> getActivites() {
         return activite;
     }
 
-    public void setActivites(ArrayList activites) {
+    public void setActivites(Collection<Activite> activites) {
         this.activite = activites;
+    }
+
+    public void addActivite(Activite activite) {
+        if (!this.activite.contains(activite))
+            this.activite.add(activite);
     }
 }

@@ -1,4 +1,4 @@
-package friendsofmine.domain;
+package friendsofmine;
 
 import friendsofmine.domain.Activite;
 
