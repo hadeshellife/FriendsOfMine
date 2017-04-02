@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * Created by HadesHellife on 02-Apr-17.
  */
 @Service
-public abstract class UtilisateurService implements UtilisateurRepository {
+public class UtilisateurService{
+
     @Autowired
     private UtilisateurRepository utilisateurRepository ;
 
@@ -24,7 +25,7 @@ public abstract class UtilisateurService implements UtilisateurRepository {
         return utilisateurRepository.findOne(id);
     }
 
-    public long countUtilisateur() {
+    public Long countUtilisateur() {
         return utilisateurRepository.count();
     }
 

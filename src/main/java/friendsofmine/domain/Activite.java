@@ -1,9 +1,6 @@
 package friendsofmine.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,9 +20,21 @@ public class Activite {
 
     private String descriptif;
 
+    @NotNull
+    @ManyToOne
+    private Utilisateur responsable;
+
+    public Activite(){}
+
     public Activite(String t, String d){
         this.titre = t;
         this.descriptif = d;
+    }
+
+    public Activite(String t, String d, Utilisateur resp){
+        this.titre = t;
+        this.descriptif = d;
+        this.responsable = resp;
     }
 
     public String getTitre() {

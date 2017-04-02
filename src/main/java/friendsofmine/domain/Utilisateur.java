@@ -2,13 +2,11 @@ package friendsofmine.domain;
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -38,12 +36,18 @@ public class Utilisateur {
     @Pattern(regexp = "^[MF]{1}$")
     private String sexe;
 
+    @OneToMany(mappedBy = "responsable")
+    private ArrayList<Activite> activite;
+
+    public Utilisateur(){}
+
     public Utilisateur(String n, String p, String e, String s, Date d){
         this.nom = n;
         this.prenom = p;
         this.email = e;
         this.sexe = s;
         this.dateNaissance = d;
+        this.activite = new ArrayList<>();
     }
 
     public Utilisateur(String n, String p, String e, String s){
@@ -51,6 +55,7 @@ public class Utilisateur {
         this.prenom =p;
         this.email = e;
         this.sexe = s;
+        this.activite = new ArrayList<>();
     }
 
     public String getNom() {
@@ -91,5 +96,21 @@ public class Utilisateur {
 
     public void setSexe(String sexe) {
         this.sexe = sexe;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ArrayList<Activite> getActivites() {
+        return activite;
+    }
+
+    public void setActivites(ArrayList activites) {
+        this.activite = activites;
     }
 }
